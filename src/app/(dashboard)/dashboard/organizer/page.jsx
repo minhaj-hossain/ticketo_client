@@ -12,9 +12,9 @@ export default function OverviewPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1E1E1E] text-white p-8">
+    <div className="min-h-screen border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl rounded-2xl p-8">
       {/* HEADER BAR */}
-      <header className="flex items-center justify-between border-b border-white/5 pb-5 mb-8">
+      <header className="flex items-center justify-between  border-b border-white/5 pb-5 mb-8">
         <h1 className="text-2xl font-bold tracking-tight">Overview</h1>
         <div className="flex items-center gap-4">
           <button className="text-slate-400 hover:text-white transition cursor-pointer text-lg">

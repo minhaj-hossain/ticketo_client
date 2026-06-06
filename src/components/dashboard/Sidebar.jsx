@@ -20,23 +20,82 @@ export default function Sidebar() {
 
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
-  console.log(user?.role);
+  //   console.log(user?.role);
 
   // Static list of main sidebar links
-  const menuItems = [
-    { name: "Overview", href: "/dashboard/organizer", icon: <FaThLarge /> },
-    {
-      name: "Organization",
-      href: "/dashboard/organizations",
-      icon: <FaBuilding />,
-    },
-    { name: "My Events", href: "/dashboard/events", icon: <FaCalendarAlt /> },
-    { name: "Bookings", href: "/dashboard/bookings", icon: <FaUsers /> },
-    { name: "Go Premium", href: "/dashboard/premium", icon: <FaStar /> },
-  ];
+  //   const menuItems = [
+  //     { name: "Overview", href: "/dashboard/organizer", icon: <FaThLarge /> },
+  //     {
+  //       name: "Organization",
+  //       href: "/dashboard/organizations",
+  //       icon: <FaBuilding />,
+  //     },
+  //     { name: "My Events", href: "/dashboard/events", icon: <FaCalendarAlt /> },
+  //     { name: "Bookings", href: "/dashboard/bookings", icon: <FaUsers /> },
+  //     { name: "Go Premium", href: "/dashboard/premium", icon: <FaStar /> },
+  //   ];
+  const menuItemsByRole = {
+    organizer: [
+      { name: "Overview", href: "/dashboard/organizer", icon: <FaThLarge /> },
+      {
+        name: "Organization",
+        href: "/dashboard/organizer/organization",
+        icon: <FaBuilding />,
+      },
+      {
+        name: "Create Events",
+        href: "/dashboard/organizer/create-events",
+        icon: <FaCalendarAlt />,
+      },
+      {
+        name: "Bookings",
+        href: "/dashboard/organizer/bookings",
+        icon: <FaUsers />,
+      },
+      {
+        name: "Go Premium",
+        href: "/dashboard/organizer/premium",
+        icon: <FaStar />,
+      },
+    ],
+    attendee: [
+      { name: "Overview", href: "/dashboard/attendee", icon: <FaThLarge /> },
+      {
+        name: "My Bookings",
+        href: "/dashboard/attendee/bookings",
+        icon: <FaTicketAlt />,
+      },
+      {
+        name: "Payments",
+        href: "/dashboard/attendee/payments",
+        icon: <FaStar />,
+      },
+      {
+        name: "Profile",
+        href: "/dashboard/attendee/profile",
+        icon: <FaUsers />,
+      },
+    ],
+    admin: [
+      { name: "Overview", href: "/dashboard/admin", icon: <FaThLarge /> },
+      { name: "Users", href: "/dashboard/admin/users", icon: <FaUsers /> },
+      {
+        name: "Moderation",
+        href: "/dashboard/admin/moderation",
+        icon: <FaBuilding />,
+      },
+      {
+        name: "Transactions",
+        href: "/dashboard/admin/transactions",
+        icon: <FaStar />,
+      },
+    ],
+  };
+
+  const menuItems = menuItemsByRole[user?.role] || [];
 
   return (
-    <aside className="w-64 h-screen bg-[#2A2927] border-r border-white/5 flex flex-col justify-between text-[#A3A2A0]">
+    <aside className="w-64 h-screen border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl flex flex-col justify-between text-[#A3A2A0]">
       {/* TOP SECTION: BRAND LOGO & LINKS */}
       <div>
         {/* LOGO HEADER */}
